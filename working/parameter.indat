@@ -1,0 +1,561 @@
+#########################################################################
+# * This file is treated by a perlscript, so all lines beginning by # are
+#   not read. 
+# * The ordering of the parameters cannot be changed without changing 
+#   the  perlscript
+#########################################################################
+#
+#
+#                  NAMES AND PATHS FOR OUTPUT FILES
+#
+#
+#########################################################################
+# Name of the run: string which serves to form : 
+# 1) the names of the input parameter files,
+# 2) the names of the executable files ,
+# 3) the path to save the .bs files from the working directory into
+#    the following directories which will be created if they do not 
+#    exist:
+#    result.string/dir.string
+#    result.string/onef.string
+#    result.string/twof.string
+# Note that only alpha-numeric characters are allowed, namely
+# letters, numbers or _
+#
+#_lhc_gamma_gamma_15
+_blic
+#########################################################################
+# Name for the histo: string which serves to form
+# the names of the histograms or of the ntuple.
+#
+_truc
+#########################################################################
+# String to form the path where the ntuple or the histograms will be put
+#
+../pawres
+#########################################################################
+# Please select the format of the output: "histo" will give directly 
+# histograms, "ntuple" will produce a ntuple. Here also the Makefile is 
+# modified in order to load only the necessary files
+#
+histo
+#########################################################################
+#
+#
+#                         INPUT
+#
+#
+#########################################################################
+#                         PDFS
+#########################################################################
+# With this version of the code, only cteq5, cteq6, mrs99, mrst01 or pdf 
+# from pdflib (cernlib) can be used. If the user wants to use another 
+# PDF set, he has to provide a new file which interfaces his preferred 
+# choice with pdflib, see for example the file "pftopdg_mrs99.f" in the 
+# directory "pdfs". 
+# First the user has to choose if the PDF come from PDFLIB or not
+# Please select "pdflib" or "not_pdflib"
+# Note that if the user wants to have different PDF for
+# each hadron in initial state, he must choose "pdflib"
+not_pdflib
+#########################################################################
+# Type of initial hadron H1:0 proton, 1 anti-proton, 3 pion
+#
+0
+#########################################################################
+# If "pdflib" has been chosen, put here the number of the group
+# else select a PDF: possible sets are
+# "mrs99","mrst01","mrst02","mrst03","mrst04","cteq5","cteq6"
+#
+cteq6
+#########################################################################
+# If "pdflib" has been chosen, put here the number of the set
+# if "pdflib" is not used
+#	if "mrs99" has been selected above, put 198+mode 
+#      (for different choices see pdfs/mrs99/mrs99.f)
+#                  for example for mode 2 (higher gluon) put 198+2=200
+#	if "mrst01" has been selected above, put 199+mode 
+#      (for different choices see pdfs/mrst01/mrst01.f)
+#                  for example for mode 1 (default) put 199+1=200
+#	if "cteq5" has been selected above, put iset 
+#      (for different choices see pdfs/cteq5/Ctq5Pdf.f)
+#	if "cteq6" has been selected above, put nset = 1 
+#	if "mrst02" has been selected above, put 1 (2 is for NNLO) 
+#	if "mrst03" has been selected above, put 1 (2 is for NNLO) 
+#	if "mrst04" has been selected above, put 1 (2 is for NNLO) 
+#
+1
+#########################################################################
+# Type of initial hadron H2:0 proton, 1 anti-proton, 3 pion
+#
+0
+#########################################################################
+# If "pdflib" has been chosen, put here the number of the group
+# else select a PDF: possible sets are
+# "mrs99","mrst01","mrst02","mrst03","mrst04","cteq5","cteq6"
+#
+cteq6
+#########################################################################
+# If "pdflib" has been chosen, put here the number of the set
+# if "pdflib" is not used
+#	if "mrs99" has been selected above, put 198+mode 
+#      (for different choices see pdfs/mrs99/mrs99.f)
+#                  for example for mode 2 (higher gluon) put 198+2=200
+#	if "mrst01" has been selected above, put 199+mode 
+#      (for different choices see pdfs/mrst01/mrst01.f)
+#                  for example for mode 1 (default) put 199+1=200
+#	if "cteq5" has been selected above, put iset 
+#      (for different choices see pdfs/cteq5/Ctq5Pdf.f)
+#	if "cteq6" has been selected above, put nset = 1 
+#	if "mrst02" has been selected above, put 1 (2 is for NNLO) 
+#	if "mrst03" has been selected above, put 1 (2 is for NNLO) 
+#	if "mrst04" has been selected above, put 1 (2 is for NNLO) 
+#
+1
+#########################################################################
+#                     FRAGMENTATION FUNCTION
+#########################################################################
+# For the direct contribution, the choice of the fragmentation functions
+# plays no role
+# For the one fragmentation contribution, the particle H3 must be the 
+# hadron, and so the particle H4 is the photon
+# For the two fragmentation contribution, the choice of the fragmentation 
+# functions determines the type of the particles H3 and H4
+#########################################################################
+# Type of fragmentation functions for the particle H3 (hadron or photon)
+#
+# conventions: 3digit number, xyz
+# 
+# x = group label:
+#
+#              x = 1  :  bkk (binnewies/kniehl/kramer)         
+#              x = 2  :  kkp (kniehl/kramer/poetter) 
+#              x = 3  :  owens (only for photon)
+#              x = 4  :  bouhris et al. (photon) (no LO) 
+#              x = 5  :  bouhris et al. (all charged) (no LO)
+#              x = 6  :  Kretzer (only y=1,2,7 possible)
+#
+# y = hadron label:             
+#
+#     y   = 0 : gamma
+#     y   = 1 : (pi^+ + pi^-)  /2
+#     y   = 2 : (k^+ + k^-)    /2   
+#     y   = 3 : (k^0 + k^0_bar)/2   
+#     y   = 4 : (p + p_bar)    /2
+#     y   = 5 : (pi^0)
+#     y   = 6 : (n + n_bar)    /2
+#     y   = 7 : (h^+ + h^-) 
+#
+#
+# 
+#
+# z = iset: 
+#
+#      iset = 0 :  lo
+#      iset = 1 : nlo for bkk,kkp and Kretzer, nlo set for Bourhis et al.
+#      iset = 2 : further sets
+#
+# For example:     
+#
+# 150  : bkk, pi_0,  lo
+# 151  : bkk, pi_0, nlo
+# 
+# 250  : kkp, pi_0,  lo
+# 251  : kkp, pi_0, nlo
+#
+# 301  : owens,   gamma, nlo
+#
+# 401  : bouhris, gamma, nlo, set1
+# 402  : bouhris, gamma, nlo, set2
+#
+# 571  : bouhris, all charged, nlo, set1
+# 572  : bouhris, all charged, nlo, set2
+# 573  : bouhris, all charged, nlo, set3
+#
+# 671  : kretzer, all charged, nlo
+#
+402
+#########################################################################
+# Type of fragmentation functions for the particle H4 (hadron/photon)
+#
+# conventions: 3digit number, xyz
+# 
+# x = group label:
+#
+#              x = 1  :  bkk (binnewies/kniehl/kramer)         
+#              x = 2  :  kkp (kniehl/kramer/poetter) 
+#              x = 3  :  owens (only for photon)
+#              x = 4  :  bouhris et al. (photon) (no LO) 
+#              x = 5  :  bouhris et al. (all charged) (no LO)
+#              x = 6  :  Kretzer (only y=1,2,7 possible)
+#
+# y = hadron label:             
+#
+#     y   = 0 : gamma
+#     y   = 1 : (pi^+ + pi^-)  /2
+#     y   = 2 : (k^+ + k^-)    /2   
+#     y   = 3 : (k^0 + k^0_bar)/2   
+#     y   = 4 : (p + p_bar)    /2
+#     y   = 5 : (pi^0)
+#     y   = 6 : (n + n_bar)    /2
+#     y   = 7 : (h^+ + h^-) 
+#
+#
+# 
+#
+# z = iset: 
+#
+#      iset = 0 :  lo
+#      iset = 1 : nlo for bkk,kkp and Kretzer, nlo set for Bourhis et al.
+#      iset = 2 : further sets
+#
+# For example:     
+#
+# 150  : bkk, pi_0,  lo
+# 151  : bkk, pi_0, nlo
+# 
+# 250  : kkp, pi_0,  lo
+# 251  : kkp, pi_0, nlo
+#
+# 301  : owens,   gamma, nlo
+#
+# 401  : bouhris, gamma, nlo, set1
+# 402  : bouhris, gamma, nlo, set2
+#
+# 571  : bouhris, all charged, nlo, set1
+# 572  : bouhris, all charged, nlo, set2
+# 573  : bouhris, all charged, nlo, set3
+#
+# 671  : kretzer, all charged, nlo
+#
+402
+#########################################################################
+#                         SCALES
+#########################################################################
+# Choice of the scale:
+#       1 (pt3+pt4)*cm, 
+#       2 sqrt(pt3^2+pt4^2)*cm, 
+#       3 mgg*cm,
+#       4 max(pt3,pt4)
+# pt3 and pt4 are the transverse momentum of the final state particles H3 
+# and H4, mgg is the invariant mass formed with them
+#
+3
+#########################################################################
+# Value of cm for initial state factorisation scale
+#
+0.5D0
+#########################################################################
+# Value of cm for renormalisation scale
+#
+0.5D0
+#########################################################################
+# Value of cm for final state factorisation scale
+#
+0.5D0
+#########################################################################
+#                         COUPLING, ETC...
+#########################################################################
+# Number of loops in alpha_em:0 constant else running (routine taken from 
+# jetset)
+#
+0
+#########################################################################
+# Number of loops in alpha_s evolution:1 LO, 2 NLO (value obtained by 
+# numerical inversion of the solution of R.G equation)
+#
+2
+#########################################################################
+# Number of active flavours
+#
+5
+#########################################################################
+# Value of (hbar*c)^2 in GeV^2 pb to get cross sections in pb
+#
+.38935D+9
+#########################################################################
+# For the direct part:0 born only,1 box only, 2 born+box
+#
+2
+#########################################################################
+# Value of PTM in GeV
+# Typically PTM must be of the order of 0.5 % of the PT minimum of the
+# final photon/hadron 
+# for LHC, with PT of the photons/hadrons > 25 GeV, PTM = 0.1 GeV works
+# for Tevatron, with PT of the photons/hadrons > 12 GeV, PTM = 0.05 GeV 
+# works
+#
+0.1D0
+#########################################################################
+# Value of R_th
+# R_th = 0.1 or less
+#
+.1D0
+#########################################################################
+# Please choose which contribution of the program you want to run:
+# dir		direct contribution
+# onef		one fragmentation contribution
+# twof		two fragmentation contribution
+# Note that this nomenclature refers to the number of fragmentation functions
+# which appears in the processus, namely:
+# -the direct contribution is the contribution which has no fragmentation
+# function (it contributes only to gamma-gamma production)
+# -the one fragmentation contribution is the contribution which has one
+# fragmentation function
+# -the two fragmentation contribution is the contribution which has two
+# fragmentation functions.
+# For example, in the case of photon-pion cross section, there are two
+# contributions: "onef" and "twof"; for pion-pion cross section, there is only
+# one contribution: "twof". 
+# the items must be separated by a comma!!!!
+# for example: dir,onef,twof will run the three contributions
+#
+dir,onef,twof
+#########################################################################
+# If TRUE the Higher Order corrections are calculated
+# else if FALSE no H.O. corrections are computed
+# the number of values here must match the number of contributions 
+# already selected
+# for example if dir,onef,twof has been selected and one wants to compute
+# all these three contributions at NLO, you must put here
+# TRUE,TRUE,TRUE, if you put only one TRUE the program assumes that you
+# want to compute all the contribution at HO
+#
+TRUE
+#########################################################################
+# If TRUE the Leading Order terms are calculated
+# else if FALSE no L.O. terms are computed
+# the number of values here not necessarily match the number of contributions 
+# already selected
+#
+TRUE
+#########################################################################
+# Set to TRUE if you want to compute the physical integrated cross section 
+# (for example to  test the PTM or R_th dependence)
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+FALSE
+#########################################################################
+# Set to TRUE if you want to compute differential cross sections through a 
+# NTUPLE or HISTOGRAMS. It is used to make the grid. In this case, the 
+# program integrates the absolute value of differential cross sections. 
+# Note that this flag acts only on the creation of .bs files (creation 
+# of the grids).
+# Here one assumes that the user wants to use the same option for all
+# contributions
+#
+TRUE
+#########################################################################
+# If true only generation. This flag acts only on the generation of 
+# events just by reading the already created .bs files
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+TRUE
+#########################################################################
+#
+#
+#                         KINEMATICS
+#
+#
+#########################################################################
+#0 collider mode, 1 fixed target mode
+#
+0
+#########################################################################
+# Value of ebeam or sqrt(s) depending on the preceeding flag
+#
+14000.D0
+#########################################################################
+# Value of the maximal rapidity for the particles H3, H4 (max(yH3,yH4))
+#
+2.5D0
+#########################################################################
+# Value of the minimal rapidity for the particles H3, H4 (min(yH3,yH4))
+#
+-2.5D0
+#########################################################################
+#Value of ptmax in GeV for the particles H3, H4 (max(PtH3,PtH4))
+#
+7000.D0
+#########################################################################
+# Value of ptmin in GeV for the particles H3, H4 (min(PtH3,PtH4))
+#
+25.D0
+#########################################################################
+# Cut between the two particles H3 and H4; 
+#         0 fi_gg (azimuthal angle between H3 and H4) > fimin, 
+#         1 mmax > m_gg (invariant mass between H3 and H4) > mmin, 
+#         2 sqrt((y3-y4)^2+(phi3-phi4)^2) (distance in 
+#	    pseudo-rapidity-azimuthal angle between H3 and H4) > dmin
+#
+1
+#########################################################################
+# Value of fimin in radian, acts only if the cut on the two particles H3 
+# and H4 is 0
+#
+1.833D0
+#########################################################################
+# Value of mmin in GeV, acts only if the cut on the two particles H3 and 
+# H4 is 1
+#
+80.D0
+#########################################################################
+# Value of mmax in GeV, acts only if the cut on the two particles H3 and 
+# H4 is 1
+#
+1500.D0
+#########################################################################
+# Value of dmin, acts only if the cut on the two particles H3 and H4 is 2
+#
+0.3D0
+#########################################################################
+# flag to choose different maximum transverse energy cut deposited in 
+# the isolation cone
+# if there is no isolation criterion, choose 1 and put the maximum 
+# Et allowed: sqrt(s)/2
+# 	1 value in GeV
+#       2 Fraction of photon transverse momentum
+1	
+#########################################################################
+# Radius of isolation cone
+#
+0.4D0
+#########################################################################
+# Depending on the flag: value of Etmax (in GeV) or fraction of photon
+# transverse momentum
+# if there is no isolation criterion put 1 for the flag to choose the 
+# isolation criterium and put here the maximum Et allowed:
+# sqrt(s)/2
+#
+15.D0
+#########################################################################
+#
+#
+#                         BASES/SPRING
+#
+#
+#########################################################################
+# For all the following items except for the number of tries for SPRING, 
+# the user can choose different numbers for the different contributions. 
+# If only one number is specified, the program takes this number for all 
+# the contributions
+#########################################################################
+# Number of generated events in the ntuple or histograms
+#
+# For LO, one can take 40 000
+# but for NLO, we have to take something of order of 4 000 000 because of
+# cancellation between negative and positive weights
+#
+4000000
+#########################################################################
+# Number of iteration for the grid step
+#
+20
+#########################################################################
+# Number of iteration for the integration step
+#
+10
+#########################################################################
+# Number of calls per iteration for two to three
+#
+5000000
+#########################################################################
+# Number of calls per iteration for quasi two to two
+#
+2500000
+#########################################################################
+# Number of calls per iteration for true two to two
+#
+1000000
+#########################################################################
+# Number of tries for spring
+# here one assumes that the user wants to use the same option for all
+# contributions
+#
+1000
+#########################################################################
+# Accuracy in per cent for Bases
+#
+# For LO one can use 0.5D0 but for NLO a smaller value is required (0.03D0)
+#
+0.03D0
+#########################################################################
+#
+#
+#                         TEST
+#
+# This section is only for performing tests on specific sub-processes. Do  
+# not modify the default values below.
+#########################################################################
+# To select process in direct part:
+# In some routines, there is a loop over the number of partonic 
+# sub-processes. For the direct part, the loop runs from 1 to 2
+# the user can select one sub-process by changing the lower (upper) value
+# of the loop (for instance putting 1 1 for the two next values the user 
+# obtains results for qi + qbi only)
+#	1 : qi + qbi --> ph + ph
+#	2 : qi + g --> ph + ph
+#
+1
+2
+#########################################################################
+# To select process in one fragmentation part:
+# Here the loop over the partonic sub-processes runs from 1 to 18
+# D means a quark of charge -1/3 (Db anti quark D, Dp another quark of 
+# charge -1/3 different from D)
+# U means a quark of charge 2/3 (Ub anti quark U, Up another quark of 
+# charge 2/3 different from U)
+#	qi + qk --> qi + ph
+#	   1 : D + U --> D + ph
+#	   2 : D + Dp --> D + ph
+#	   3 : U + D --> U + ph
+#	   4 : U + Up --> U + ph
+#	qi + qbk --> qi + ph
+#	   5 : D + Ub --> D + ph
+#	   6 : D + Dpb --> D + ph
+#	   7 : U + Db --> U + ph
+#	   8 : U + Upb --> U + ph
+#	qi + qbi --> qk + ph
+#	   9 : D + Db --> U + ph
+#	   10 : D + Db --> Dp + ph
+#	   11 : U + Ub --> D + ph
+#	   12 : U + Ub --> Up + ph
+#	 13 : qi + qi --> qi + ph
+#	 14 : qi + qbi --> qi + ph
+#	 15 : qi + g --> qi + ph
+#	 16 : qi + g --> g + ph
+#	 17 : qi + qbi --> g + ph
+#	 18 : g + g --> qi + ph
+#
+1
+18
+#########################################################################
+# To select process in two fragmentation part:
+# Here the loop over the partonic sub-processes runs from 1 to 21
+#	 1 : qi + qk --> qi + qk
+#	 2 : qi + qk --> qi + g
+#	 3 : qi + qbk --> qi + qbk
+#	 4 : qi + qbk --> qi + g
+#	 5 : qi + qbi --> qk + qbk
+#	 6 : qi + qbi --> qk + g
+#	 7 : qi + g --> qi + qk
+#	 8 : qi + g --> qi + qbk
+#	 9 : qi + g --> qk + qbk
+#	 10 : qi + qi --> qi + qi
+#	 11 : qi + qi --> qi + g
+#	 12 : qi + qbi --> qi + qbi
+#	 13 : qi + qbi --> qi + g
+#	 14 : qi + g --> qi + qi
+#	 15 : qi + g --> qi + qbi
+#	 16 : qi + qbi --> g + g
+#	 17 : qi + g --> qi + g
+#	 18 : qi + g --> g + g
+#	 19 : g + g --> qi +qbi
+#	 20 : g + g --> qi + g
+#	 21 : g + g --> g + g
+#
+1
+21
+#########################################################################

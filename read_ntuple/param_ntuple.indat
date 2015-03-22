@@ -1,0 +1,167 @@
+########################################################################
+# Name of the ntuple to be analysed
+# this name must start with ggd (for direct), ggo (for one frag) and 
+# ggt (for two frag)
+#
+#../pawres/ggd_run2_d0.rz
+../pawres/ggo_run2_d0.rz
+########################################################################
+# Name of the file containing the histograms
+#
+#ggd_run2_d0_test_nt.dat
+ggo_run2_d0_test_nt.dat
+########################################################################
+# H1 + H2 --> H3 + H4 + X where the particles H3 and H4 can be gamma or 
+# hadron
+# Be careful the values of the cuts have different meaning depending
+# if the particles H3 and H4 are identical or not.
+# The values of these cuts act when the histograms are filled
+########################################################################
+# Is H3 and H4 identical? "identical", "nonidentical"
+identical
+########################################################################
+# If H3 and H4 are identical:
+# cut in P_t on the particle carrying the greatest P_t
+# else cut on the P_t of the particle H3
+#
+25.
+########################################################################
+# If H3 and H4 are identical:
+# cut in P_t on the particle carrying the lowest P_t
+# else cut on the P_t of the particle H4 
+#
+23.
+########################################################################
+# Maximum value of the rapidity of the particle H3
+#
+1.1
+########################################################################
+# Minimum value of the rapidity of the particle H3
+#
+-1.1
+########################################################################
+# Maximum value of the rapidity of the particle H4
+#
+1.1
+########################################################################
+# Minimum value of the rapidity of the particle H4
+#
+-1.1
+########################################################################
+# Minimum value of the invariant mass H3-H4,
+# if there is no minimal cut put 0.
+#
+0.
+########################################################################
+# Maximun value of the invariant mass H3-H4,
+# if there is no maximal cut put sqrt(s)/2
+#
+980.
+########################################################################
+# Choice to plot azymuthal angle in radian ("rad") or degrees ("degree")
+#
+rad
+########################################################################
+# To draw histograms, the user can select some variables which are:
+# if H3 and H4 are identical (H3 = H4)
+#   mass_gamma_gamma	invariant mass between the two photons
+#   pt_gamma		transverse momentum of each photon (double entries)
+#   pt_pair		transverse momentum of the photon pair
+#   phi_gamma_gamma	azimuthal angle between the two photons
+#   y_gamma		rapidity of one photon (double entries)
+#   y_boost		half sum of the photon rapidities
+#   y_star		half difference of the photon rapidities
+#   y_gamma_gamma	rapidity of the photon-photon pair
+#   cos_theta_star	cosine of polar angle in the partonic center-of-mass
+#   p_out		out-of-plane momentum (double entries)
+#   pt_balance		pt balance between the two photons (double entries)
+# else
+#   mass_pion_gamma	invariant mass between the particles H3 and H4
+#   pt_pion		transverse momentum of the particle H3
+#   pt_gamma		transverse momentum of the particle H4
+#   pt_pair		transverse momentum of the pair H3-H4
+#   phi_pion_gamma	azimuthal angle between the particle H3 and H4
+#   y_pion		rapidity of the particle H3
+#   y_gamma		rapidity of the particle H4
+#   y_boost		half sum of the H3 and H4 rapidities
+#   y_star		half difference of the H3 and H4 rapidities
+#   y_pion_gamma	rapidity of the H3-H4 pair
+#   cos_theta_star	cosine of polar angle in the partonic center-of-mass
+#   p_out_pion		out-of-plane momentum (plane formed by the beam axis 
+#			and the pt of the particle H3)
+#   p_out_gamma		out-of-plane momentum (plane formed by the beam axis 
+#			and the pt of the particle H4)
+#   pt_balance_pion	pt balance between the particles H3 and H4 (triggered 
+#			on H3) pt_balance_pion =
+#			 -\vec{pt_pion).\vec{pt_gamma}/pt_pion^2
+#   pt_balance_gamma	pt balance between the particles H3 and H4 (triggered 
+#			on H4) pt_balance_gamma =
+#			 -\vec{pt_pion).\vec{pt_gamma}/pt_gamma^2
+#
+# The histograms with equidistant bins must begin by the key word 
+# "histo_equi" then followed by six fields separated by a blank:
+# - the variable chosen among the preceeding lists
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this histogram enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins
+# - the minimal value of abscissa
+# - the maximal value of the abscissa
+#
+# The histograms with non equidistant bins must begin by the key word
+# "histo_nonequi"
+# then followed by five fields sperated by a blank:
+# - the variable chosen among the preceeding lists
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this histogram enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins
+# - a vector containing the value of the low edge of each bins and the 
+#   upper edge of the last bin.
+# For example the following line
+# histo_equi mass_gamma_gamma lo [] dsigma_lo/dmgg 8 80. 140.
+# will create a histogram in the invariant mass of the two photons of 8
+# equidistant bins between 80. and 140. and will fill it with L.O. result 
+# and no extra cuts,
+# the following line
+# histo_nonequi phi_gamma_gamma nlo ['4.',pt_pair,'5.'] dsigma/dfi 4 1.90 2.10 2.70 3.00 3.14
+# will create a histogram in the azimuthal angle between the two photons of 4
+# non equidistant bins:
+# - first bin:		1.90 2.10
+# - second bin:		2.10 2.70
+# - third bin:		2.70 3.00
+# - fourth bin:		3.00 3.14
+# and will fill it with N.L.O. result and with an extra cut 4.<= pt_pair <= 5.
+#
+# The scatterplots with equidistant bins must begin by the key word 
+# "scatter_equi" then followed by six fields sperated by a blank:
+# - the variables chosen in preceeding lists for x and y 
+# - "nlo" or "lo" to fill the histogram with next-to-leading order or leading 
+#   order calculation
+# - some extra cuts specific to this scatter plot enclosed with square brakets 
+#   ['lower_value',variable,'upper_value',....]
+#   (if nothing is specified in these brackets, no cuts are applied)
+# - the title
+# - the number of bins for x variable
+# - the minimal value of abscissa for x variable
+# - the maximal value of the abscissa for x variable
+# - the number of bins for y variable
+# - the minimal value of abscissa for y variable
+# - the maximal value of the abscissa for y variable
+########################################################################
+histo_equi mass_gamma_gamma lo [] dsigma_lo/dmgg 30 20. 300.
+histo_equi mass_gamma_gamma nlo [] dsigma_nlo/dmgg 30 20. 300.
+#histo_equi pt_gamma lo [] dsigma_lo/dpt_gamma 40 25. 185.
+#histo_equi pt_gamma nlo [] dsigma_nlo/dpt_gamma 40 25. 185.
+histo_equi pt_pair lo [] dsigma_lo/dqt 20 0. 100.
+histo_equi pt_pair nlo [] dsigma_nlo/dqt 20 0. 100.
+histo_equi phi_gamma_gamma lo [] dsigma_lo/dphi 9 0. 3.15
+histo_equi phi_gamma_gamma nlo [] dsigma_nlo/dphi 9 0. 3.15
+#histo_nonequi mass_gamma_gamma lo [] dsigma/dmgg 8 80. 82. 84. 88. 94. 100. #125. 135. 140.
+#histo_nonequi phi_gamma_gamma nlo [] dsigma/dfi 6 1.57 1.70 1.90 2.10 2.70 3. #3.14

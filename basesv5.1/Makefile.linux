@@ -17,11 +17,17 @@ AR		= /usr/bin/ar
 RANLIB		= /usr/bin/ranlib
 # for HP
 #RANLIB		= /bin/ar ts
-FC            = g77
+FC            = gfortran
 FFLAGS        =
 #
 LIBBASES      = libbases.a
 #
+
+%.o:	%.f
+	$(FC) -c -o $@ -O -m32 $<
+%.o:	%.c
+	gcc -c -o $@ -m32 $<
+
 SRCS	= bases.f bhinit.f bhplot.f bhrset.f bhsave.f bschck.f \
 bsdate.f bsetgu.f bsetgv.f bsinfo.f bsinit.f bsdims.f bsgrid.f \
 bsparm.f bsintg.f bslist.f bsordr.f bsprnt.f bsread.f bstcnv.f \

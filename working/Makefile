@@ -30,16 +30,16 @@ CHOIXHISTO	= histo
 
 # FC	= f77
 # FC         = pgf77
-FC         = g77
+FC         = gfortran
 
-FFLAGS	   = -O
+FFLAGS	   = -O -m32
 #FFLAGS	   = -g
 
 ifeq ($(FC),pgf77)
 MAKEBASES= Makefile.pgf_linux
 LDFLAGS    = -g77libs
 endif
-ifeq ($(FC),g77)
+ifeq ($(FC),gfortran)
 MAKEBASES= Makefile.linux
 LDFLAGS    = 
 endif
@@ -170,7 +170,10 @@ ifeq ($(CHOIXPDF),pdflib)
 endif
 
 %.o : %.f
-	$(FC) -c -o $@ $(FFLAGS) $<
+	$(FC) -m32 $(FFLAGS) -ffixed-line-length-132 $< -c -o $@
+
+%.o : %.c
+	gcc -c -o $@ -m32 $<
 
 MDIR = htermdir.o crossdir.o twophotdn.o dir.o \
 	h12dir.o h13dir.o h23dir.o h14dir.o \
@@ -248,19 +251,19 @@ MCV = vecsum.o vecaddmulcons.o vecaddvec.o vecinit.o \
 	vecmuladd.o vecmulcons.o vecmulsub.o \
 	vecmulvec.o
 
-twophot_blic1: $(MAIN) $(MC) $(MDIR) $(MONE) $(MTWO) $(FRAG) $(MCV)
-	$(LINKER) $(LDFLAGS) -o $@.exe $^ \
+twophot_blic: $(MAIN) $(MC) $(MDIR) $(MONE) $(MTWO) $(FRAG) $(MCV)
+	$(LINKER) $(LDFLAGS) -o $@.exe -m32 $^ \
 	-L$(GRACELDIR) -l$(BASESLIB) \
 	$(CERNLIB)
 
 phothad_blic: $(MAIN) $(MC) twophotdn_dum.o $(MONE) $(MTWO) $(FRAG) $(MCV)
-	$(LINKER) $(LDFLAGS) -o $@.exe $^ \
+	$(LINKER) $(LDFLAGS) -o $@.exe -m32 $^ \
 	-L$(GRACELDIR) -l$(BASESLIB) \
 	$(CERNLIB)
 
 twohad_blic: $(MAIN) $(MC) twophotdn_dum.o twophoton_dum.o $(MTWO) \
 	$(FRAG) $(MCV)
-	$(LINKER) $(LDFLAGS) -o $@.exe $^ \
+	$(LINKER) $(LDFLAGS) -o $@.exe -m32 $^ \
 	-L$(GRACELDIR) -l$(BASESLIB) \
 	$(CERNLIB)
 

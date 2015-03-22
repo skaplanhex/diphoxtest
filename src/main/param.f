@@ -403,8 +403,7 @@ c valeur de c1
 c valeur de c2
 	read *,c2
 ** 	write(8,*) 'c2=',c2
-c pt_pair vrai on calcule dsigma/d qt, si pt_photon vrai, on calcul
-dsigma/dpt
+c pt_pair vrai on calcule dsigma/d qt, si pt_photon vrai, on calcul dsigma/dpt
 	read *,pt_pair
 ** 	write(8,*) 'pt_pair=',pt_pair
 	read *,pt_photon
